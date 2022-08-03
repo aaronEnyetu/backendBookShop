@@ -16,6 +16,24 @@ describe('backend-express-template routes', () => {
     expect(sweetgrass).toHaveProperty('title', 'Braiding Sweetgrass');
   });
 
+  it('should return a specific book detail', async () => {
+    const res = await request(app).get('/books/2');
+    const compass = {
+      authors: [{
+        dob: '10/19/1946',
+        id: 2,
+        name: 'Philip Pullman',
+        pob: 'Norwich, England'
+      }],
+      id: '2',
+      title: 'The Golden Compass',
+      released: 1995
+    };
+
+    expect(res.body).toEqual(compass);
+
+  });
+
 
   afterAll(() => {
     pool.end();
