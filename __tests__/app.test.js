@@ -34,6 +34,12 @@ describe('backend-express-template routes', () => {
 
   });
 
+  it('POST /books should create a new book', async () => {
+    const res = await request(app).post('/books').send({ title: 'The Secret Garden', released: 1911 });
+
+    expect(res.body.title).toBe('The Secret Garden');
+  });
+
 
   afterAll(() => {
     pool.end();
